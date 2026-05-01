@@ -102,3 +102,25 @@ body[dir="rtl"] .event-card .event-caption{right:16px;left:auto}
 .events-grid.has-active-filter .external-event-card.is-active-category .event-caption{background:rgba(7,11,22,.8)}
 .events-grid.has-active-filter .external-event-card.is-muted-category .event-caption{opacity:.8}
 @media (max-width:700px){.social-events-grid{grid-auto-rows:255px}.event-card .event-caption{left:12px;bottom:12px;max-width:calc(100% - 24px);padding:12px}body[dir="rtl"] .event-card .event-caption{right:12px;left:auto}.external-event-card:after{top:12px;right:12px}.event-card .event-caption strong{font-size:.98rem}}
+
+
+/* Real Facebook post previews inside the event gallery */
+.external-event-card{position:relative;min-height:0;background:#090e1c}
+.external-event-card .fb-post-preview{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;background:linear-gradient(135deg,#0b1020,#151a2e);transform:translateZ(22px);transition:transform .7s ease,filter .35s ease,opacity .35s ease}
+.external-event-card:hover .fb-post-preview{transform:translateZ(22px) scale(1.045)}
+.external-event-card .fb-preview-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18;filter:saturate(.75) contrast(.95)}
+.external-event-card .fb-preview-frame{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff;pointer-events:none;transform:scale(1.08);transform-origin:center top}
+.external-event-card.big .fb-preview-frame{transform:scale(1.12);transform-origin:center top}
+.external-event-card.tall .fb-preview-frame{height:112%;transform:scale(1.08);transform-origin:center top}
+.external-event-card .event-caption{z-index:2}
+.external-event-card:after{z-index:3}
+.events-grid.has-active-filter .external-event-card{filter:none!important;opacity:1!important}
+.events-grid.has-active-filter .external-event-card .fb-post-preview{filter:grayscale(1) saturate(0) contrast(.92);opacity:.68}
+.events-grid.has-active-filter .external-event-card.is-active-category .fb-post-preview{filter:saturate(1.08) contrast(1.03);opacity:1}
+.events-grid.has-active-filter .external-event-card.is-active-category{border-color:rgba(255,107,34,.72);box-shadow:0 22px 70px rgba(255,107,34,.20)}
+.events-grid.has-active-filter .external-event-card.is-muted-category .event-caption{background:rgba(7,11,22,.56);opacity:.76}
+@media (max-width:700px){.external-event-card .fb-preview-frame{transform:scale(1.02);transform-origin:center top}.external-event-card.big .fb-preview-frame,.external-event-card.tall .fb-preview-frame{transform:scale(1.02)}}
+
+.external-event-card .event-open-link{position:absolute;inset:0;z-index:4;border-radius:inherit;color:transparent;text-indent:-9999px;overflow:hidden}
+.external-event-card .event-open-link:focus-visible{outline:3px solid var(--orange2);outline-offset:-6px}
+.external-event-card:after{pointer-events:none}
