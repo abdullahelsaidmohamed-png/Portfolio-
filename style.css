@@ -124,3 +124,41 @@ body[dir="rtl"] .event-card .event-caption{right:16px;left:auto}
 .external-event-card .event-open-link{position:absolute;inset:0;z-index:4;border-radius:inherit;color:transparent;text-indent:-9999px;overflow:hidden}
 .external-event-card .event-open-link:focus-visible{outline:3px solid var(--orange2);outline-offset:-6px}
 .external-event-card:after{pointer-events:none}
+
+
+/* Local Facebook post images - stable portfolio gallery */
+.event-tags{align-items:center}
+.event-filter{white-space:nowrap}
+.social-events-grid{grid-auto-rows:255px}
+.external-event-card{display:block;position:relative;color:inherit;text-decoration:none;isolation:isolate;background:#090e1c;overflow:hidden}
+.external-event-card .local-event-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:translateZ(22px);
+  transition:transform .7s ease,filter .35s ease,opacity .35s ease;
+  background:#111827;
+}
+.external-event-card:hover .local-event-image{transform:translateZ(22px) scale(1.06)}
+.external-event-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(7,11,22,.08),rgba(7,11,22,.18) 42%,rgba(7,11,22,.62));
+}
+.external-event-card .event-caption{z-index:2}
+.external-event-card:after{z-index:3}
+.events-grid.has-active-filter .external-event-card{filter:none!important;opacity:1!important}
+.events-grid.has-active-filter .external-event-card .local-event-image{filter:grayscale(1) saturate(0) contrast(.92);opacity:.66}
+.events-grid.has-active-filter .external-event-card.is-active-category .local-event-image{filter:saturate(1.08) contrast(1.03);opacity:1}
+.events-grid.has-active-filter .external-event-card.is-active-category{border-color:rgba(255,107,34,.72);box-shadow:0 22px 70px rgba(255,107,34,.20)}
+.events-grid.has-active-filter .external-event-card.is-muted-category .event-caption{background:rgba(7,11,22,.56);opacity:.78}
+@media (max-width:700px){
+  .social-events-grid{grid-auto-rows:265px}
+  .event-tags{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px}
+  .event-tags::-webkit-scrollbar{height:0}
+}
