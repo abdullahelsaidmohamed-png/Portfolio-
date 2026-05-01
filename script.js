@@ -150,8 +150,8 @@
     themeToggle.querySelector('span').textContent = body.classList.contains('light-theme') ? '☀' : '☾';
   });
 
-  const filters = $$('.filter');
-  const cards = $$('.screen-card');
+  const filters = $$('.work-filters .filter');
+  const cards = $$('.erp-gallery .screen-card');
   filters.forEach(btn => btn.addEventListener('click', () => {
     filters.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -161,6 +161,28 @@
       card.classList.toggle('is-hidden', filter !== 'all' && !cats.includes(filter));
     });
   }));
+
+  const eventFilters = $$('.event-filter');
+  const eventCards = $$('.external-event-card');
+  const eventGrid = $('.social-events-grid');
+  let activeEventFilter = '';
+  function applyEventFilter(filter) {
+    activeEventFilter = activeEventFilter === filter ? '' : filter;
+    eventFilters.forEach(btn => {
+      const isActive = btn.dataset.eventFilter === activeEventFilter;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+    eventGrid?.classList.toggle('has-active-filter', Boolean(activeEventFilter));
+    eventCards.forEach(card => {
+      const categories = (card.dataset.eventCategory || '').split(' ');
+      const matches = activeEventFilter && categories.includes(activeEventFilter);
+      card.classList.toggle('is-active-category', Boolean(matches));
+      card.classList.toggle('is-muted-category', Boolean(activeEventFilter && !matches));
+    });
+  }
+  eventFilters.forEach(btn => btn.addEventListener('click', () => applyEventFilter(btn.dataset.eventFilter)));
+
 
   const lightbox = $('#lightbox');
   const lightboxImg = $('#lightbox img');
@@ -179,7 +201,7 @@
     body.style.overflow = '';
     setTimeout(() => { lightboxImg.src = ''; }, 180);
   }
-  $$('.screen-card,.event-card').forEach(card => {
+  $$('.screen-card').forEach(card => {
     card.addEventListener('click', () => {
       const img = $('img', card);
       openLightbox(card.dataset.src || img.src, card.dataset.caption || $('h3,strong', card)?.textContent || '', img.alt);
