@@ -175,6 +175,8 @@ body[dir="rtl"] .event-card .event-caption{right:16px;left:auto}
     height:42px;
     flex:0 0 42px;
     padding:0;
+    gap:0;
+    text-align:center;
     border-radius:50%;
     background:linear-gradient(135deg,var(--orange),var(--orange2));
     color:#101827;
@@ -186,9 +188,14 @@ body[dir="rtl"] .event-card .event-caption{right:16px;left:auto}
   }
   .header-actions .primary-btn.compact::after{
     content:"C.V";
+    display:block;
+    width:100%;
+    text-align:center;
     font-size:.78rem;
     font-weight:1000;
+    line-height:1;
     letter-spacing:.02em;
+    transform:translateX(-1.5px);
   }
   .header-actions .primary-btn.compact:hover{
     transform:translateY(-1px);
